@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-canary
+  namespace: thinkflow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask
+      track: canary
+  template:
+    metadata:
+      labels:
+        app: flask
+        track: canary
+    spec:
+      containers:
+      - name: flask
+        image: omkarbhute/thinkflow
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - secretRef:
+            name: thinkflow-secrets
