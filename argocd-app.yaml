@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/YOURNAME/thinkflow-gitops.git
+    repoURL: https://github.com/Omkargithub64/thinkflow-argocd.git
     targetRevision: main
     path: .
   destination:
