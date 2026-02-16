@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: flask
-        image: omkarbhute/thinkflow:21
+        image: omkarbhute/thinkflow:22
         ports:
         - containerPort: 5000
         envFrom:
