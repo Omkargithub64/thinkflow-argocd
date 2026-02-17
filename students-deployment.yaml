@@ -18,6 +18,21 @@ spec:
           image: omkarbhute/thinkflow-students:latest
           ports:
             - containerPort: 5000
+
+          # ✅ ADD THIS (loads .env.students secret)
+          envFrom:
+            - secretRef:
+                name: thinkflow-students-secret
+
+          # ✅ ADD THIS (mount firebase + instance folder)
+          volumeMounts:
+            - name: firebase-volume
+              mountPath: /app/nisarga-773f0-firebase-adminsdk-fbsvc-0121e2bef1.json
+              subPath: nisarga-773f0-firebase-adminsdk-fbsvc-0121e2bef1.json
+
+            - name: instance-volume
+              mountPath: /app/instance
+
           resources:
             requests:
               cpu: "200m"
@@ -25,3 +40,12 @@ spec:
             limits:
               cpu: "400m"
               memory: "512Mi"
+
+      # ✅ ADD THIS (define volumes)
+      volumes:
+        - name: firebase-volume
+          secret:
+            secretName: firebase-secret
+
+        - name: instance-volume
+          emptyDir: {}

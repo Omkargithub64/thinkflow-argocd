@@ -18,6 +18,27 @@ spec:
           image: omkarbhute/thinkflow-teachers:latest
           ports:
             - containerPort: 5000
+
+          # ✅ Load .env.teachers secret
+          envFrom:
+            - secretRef:
+                name: thinkflow-teachers-secret
+
+          # ✅ Mount firebase + config + instance
+          volumeMounts:
+            # Firebase JSON
+            - name: firebase-volume
+              mountPath: /app/nisarga-773f0-firebase-adminsdk-fbsvc-0121e2bef1.json
+              subPath: nisarga-773f0-firebase-adminsdk-fbsvc-0121e2bef1.json
+
+            # Config folder (if you created secret from folder)
+            - name: config-volume
+              mountPath: /app/config
+
+            # Instance folder (for SQLite or runtime files)
+            - name: instance-volume
+              mountPath: /app/instance
+
           resources:
             requests:
               cpu: "200m"
@@ -25,3 +46,18 @@ spec:
             limits:
               cpu: "400m"
               memory: "512Mi"
+
+      volumes:
+        # Firebase file
+        - name: firebase-volume
+          secret:
+            secretName: firebase-secret
+
+        # Config folder secret
+        - name: config-volume
+          secret:
+            secretName: thinkflow-config-secret
+
+        # Writable runtime directory
+        - name: instance-volume
+          emptyDir: {}
