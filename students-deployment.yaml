@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: thinkflow-students
-          image: omkarbhute/thinkflow-students:25
+          image: omkarbhute/thinkflow-students:26
           ports:
             - containerPort: 5001
 
