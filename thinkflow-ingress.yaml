@@ -4,13 +4,13 @@ metadata:
   name: thinkflow-ingress
   namespace: thinkflow
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
     - http:
         paths:
-          - path: /students(/|$)(.*)
+          - path: /students
             pathType: Prefix
             backend:
               service:
@@ -18,7 +18,7 @@ spec:
                 port:
                   number: 80
 
-          - path: /teachers(/|$)(.*)
+          - path: /teachers
             pathType: Prefix
             backend:
               service:
