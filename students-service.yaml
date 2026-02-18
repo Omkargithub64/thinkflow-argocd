@@ -4,7 +4,7 @@ metadata:
   name: thinkflow-students-service
   namespace: thinkflow
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: thinkflow-students
   ports:
