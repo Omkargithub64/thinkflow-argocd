@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: thinkflow-ingress
+  namespace: thinkflow
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /students(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: thinkflow-students-service
+                port:
+                  number: 80
+
+          - path: /teachers(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: thinkflow-teachers-service
+                port:
+                  number: 80
