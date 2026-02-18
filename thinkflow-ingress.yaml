@@ -11,7 +11,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /students(/|$)(.*)
+          - path: /mite/students(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
               service:
@@ -19,7 +19,7 @@ spec:
                 port:
                   number: 80
 
-          - path: /teachers(/|$)(.*)
+          - path: /mite/teachers(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
               service:
